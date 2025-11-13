@@ -1,0 +1,287 @@
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WaKenya — Wholesale & Retail</title>
+  <meta name="description" content="WaKenya Wholesale & Retails — colorful, creative online wholesale store." />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+  <style>
+    :root{
+      --accent-1: #ff6b6b;
+      --accent-2: #ffd166;
+      --accent-3: #6bf178;
+      --bg: linear-gradient(135deg,#ffd166 0%, #ff6b6b 40%, #6bf178 100%);
+      --glass: rgba(255,255,255,0.12);
+      --glass-2: rgba(255,255,255,0.08);
+      --card-shadow: 0 8px 30px rgba(10,10,10,0.12);
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:var(--bg);color:#111;display:flex;flex-direction:column}
+    header{backdrop-filter: blur(6px);position:sticky;top:0;z-index:40;padding:14px 22px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:52px;height:52px;border-radius:12px;background:conic-gradient(from 120deg,#fff6 0,#fff2 60%), linear-gradient(45deg,#2d3142,#5e6bff);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;box-shadow:var(--card-shadow)}
+    .brand h1{margin:0;font-size:18px}
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{color:#111;text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600}
+    nav a.cta{background:rgba(255,255,255,0.9)}
+
+    main{flex:1;padding:28px;max-width:1200px;margin:0 auto;width:100%}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:20px;align-items:center}
+    .hero-card{background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.8));padding:28px;border-radius:16px;box-shadow:var(--card-shadow)}
+    .hero h2{margin:0 0 8px;font-size:32px}
+    .hero p{margin:0 0 18px;color:#333}
+    .search-row{display:flex;gap:10px}
+    .search-row input{flex:1;padding:12px;border-radius:10px;border:0;outline:none;font-size:16px}
+    .btn{padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:white}
+
+    /* product grid */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:22px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.95),white);padding:14px;border-radius:14px;box-shadow:var(--card-shadow);display:flex;flex-direction:column;gap:10px}
+    .thumb{height:160px;border-radius:10px;background-size:cover;background-position:center}
+    .meta{display:flex;align-items:center;justify-content:space-between}
+    .price{font-weight:800}
+    .category{font-size:12px;padding:6px 8px;border-radius:8px;background:var(--glass-2)}
+
+    /* cart drawer */
+    .cart-btn{position:relative}
+    .cart-count{position:absolute;top:-8px;right:-8px;background:#111;color:white;padding:6px 8px;border-radius:50%;font-size:12px}
+    .drawer{position:fixed;right:18px;top:80px;width:360px;max-width:94%;background:white;border-radius:12px;box-shadow:0 30px 60px rgba(10,10,10,0.2);padding:16px;transform:translateX(110%);transition:transform 320ms cubic-bezier(.2,.9,.2,1);z-index:60}
+    .drawer.open{transform:translateX(0%)}
+    .drawer h3{margin:0 0 10px}
+    .cart-list{display:flex;flex-direction:column;gap:10px;max-height:340px;overflow:auto;padding-right:6px}
+    .cart-item{display:flex;gap:10px;align-items:center}
+    .cart-item img{width:56px;height:56px;border-radius:8px;object-fit:cover}
+    .qty{display:flex;gap:6px;align-items:center}
+
+    footer{padding:20px;text-align:center;color:#222;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.02));margin-top:30px}
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      header{padding:12px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">Wk</div>
+      <div>
+        <h1>WaKenya</h1>
+        <small>Wholesale & Retails</small>
+      </div>
+    </div>
+    <nav>
+      <a href="#shop">Shop</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button class="btn btn-primary cart-btn" id="openCart">Cart <span class="cart-count" id="cartCount">0</span></button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-card">
+        <h2>Wholesale prices. Bright choices.</h2>
+        <p>WaKenya brings you a curated selection of high-demand items for retailers and bulk buyers. Colorful, creative, and priced for business.</p>
+        <div class="search-row">
+          <input id="search" placeholder="Search products, e.g. 'sneakers' or 'charging cable'" />
+          <button class="btn btn-primary" id="searchBtn">Search</button>
+        </div>
+
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn" onclick="filterCategory('all')">All</button>
+          <button class="btn" onclick="filterCategory('electronics')">Electronics</button>
+          <button class="btn" onclick="filterCategory('fashion')">Fashion</button>
+          <button class="btn" onclick="filterCategory('home')">Home</button>
+          <button class="btn" onclick="filterCategory('groceries')">Groceries</button>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="background:white;padding:18px;border-radius:12px;box-shadow:var(--card-shadow)">
+          <h3 style="margin:0">Why buy wholesale?</h3>
+          <ul style="margin:10px 0 0 18px">
+            <li>Lower per-unit cost</li>
+            <li>Reliable supply for retailers</li>
+            <li>Bulk discounts and flexible MOQ</li>
+          </ul>
+        </div>
+
+        <div style="background:linear-gradient(90deg,var(--accent-2),var(--accent-1));color:white;padding:12px;border-radius:12px;display:flex;align-items:center;gap:10px">
+          <div style="flex:1">
+            <strong>Become a reseller</strong>
+            <div style="font-size:13px">Sign up for special business pricing and offers.</div>
+          </div>
+          <button class="btn" style="background:white;border-radius:10px;padding:8px 10px;font-weight:700" onclick="alert('Sign-up flow placeholder')">Sign Up</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="shop">
+      <h2 style="margin-top:26px">Featured Products</h2>
+      <div class="grid" id="productGrid"></div>
+    </section>
+
+    <section id="about" style="margin-top:30px">
+      <h2>About WaKenya</h2>
+      <p>WaKenya Wholesale & Retails connects suppliers to small businesses across Kenya and beyond. Our mission is to make bulk buying easy, colorful, and reliable.</p>
+    </section>
+
+    <section id="contact" style="margin-top:24px">
+      <h2>Contact</h2>
+      <p>Email: sales@wakenya.example (placeholder)</p>
+      <form onsubmit="event.preventDefault();alert('Message sent (demo)')">
+        <input required placeholder="Your name" style="padding:10px;border-radius:8px;border:0;margin-right:6px;width:220px" />
+        <input required placeholder="Your email" style="padding:10px;border-radius:8px;border:0;width:220px" />
+        <div style="margin-top:8px"><button class="btn btn-primary">Send</button></div>
+      </form>
+    </section>
+
+  </main>
+
+  <aside class="drawer" id="cartDrawer">
+    <h3>Your Cart</h3>
+    <div class="cart-list" id="cartList"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+      <div><strong>Total:</strong> KES <span id="cartTotal">0</span></div>
+      <div>
+        <button class="btn" onclick="clearCart()">Clear</button>
+        <button class="btn btn-primary" onclick="checkout()">Checkout</button>
+      </div>
+    </div>
+  </aside>
+
+  <footer>
+    © <span id="year"></span> WaKenya Wholesale & Retails — Built with ❤️
+  </footer>
+
+  <script>
+    // sample products (you can replace these with real data or an API)
+    const PRODUCTS = [
+      {id:1,name:'Wireless Earbuds (Bulk 50)',price:2400,category:'electronics',img:'https://images.unsplash.com/photo-1518444025303-667c8c9d3b2c?auto=format&fit=crop&w=600&q=60'},
+      {id:2,name:'Men\'s Sneaker (Box of 20)',price:5200,category:'fashion',img:'https://images.unsplash.com/photo-1528701800489-476c2df3f5a3?auto=format&fit=crop&w=600&q=60'},
+      {id:3,name:'Ceramic Mugs (Pack 30)',price:1800,category:'home',img:'https://images.unsplash.com/photo-1549091923-87b6a6f1f7c8?auto=format&fit=crop&w=600&q=60'},
+      {id:4,name:'AA Batteries (Carton 200)',price:3200,category:'electronics',img:'https://images.unsplash.com/photo-1585079542259-4b8b8c4f3d1f?auto=format&fit=crop&w=600&q=60'},
+      {id:5,name:'T-shirt (Bulk 100)',price:9500,category:'fashion',img:'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=600&q=60'},
+      {id:6,name:'Cooking Oil (Pallet)',price:42000,category:'groceries',img:'https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=600&q=60'}
+    ];
+
+    const productGrid = document.getElementById('productGrid');
+    const cartDrawer = document.getElementById('cartDrawer');
+    const cartList = document.getElementById('cartList');
+    const cartCount = document.getElementById('cartCount');
+    const cartTotal = document.getElementById('cartTotal');
+
+    let CART = JSON.parse(localStorage.getItem('wakenya_cart')||'{}');
+
+    function formatKES(n){return Number(n).toLocaleString('en-KE')}
+
+    function renderProducts(items){
+      productGrid.innerHTML = '';
+      items.forEach(p=>{
+        const el = document.createElement('div');el.className='card';
+        el.innerHTML = `
+          <div class="thumb" style="background-image:url(${p.img})"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-weight:800">${p.name}</div>
+              <div style="font-size:13px;color:#666">SKU: WKN-${p.id.toString().padStart(4,'0')}</div>
+            </div>
+            <div class="price">KES ${formatKES(p.price)}</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <div class="category">${p.category}</div>
+            <div>
+              <button class="btn" onclick='addToCart(${p.id})'>Add</button>
+              <button class="btn btn-primary" onclick='buyNow(${p.id})'>Buy</button>
+            </div>
+          </div>
+        `;
+        productGrid.appendChild(el);
+      })
+    }
+
+    function addToCart(id){
+      const prod = PRODUCTS.find(p=>p.id===id);
+      if(!prod) return;
+      CART[id] = CART[id] || {...prod, qty:0};
+      CART[id].qty += 1;
+      saveCart();
+      renderCart();
+    }
+    function buyNow(id){addToCart(id);openDrawer();}
+
+    function saveCart(){localStorage.setItem('wakenya_cart',JSON.stringify(CART));}
+
+    function renderCart(){
+      cartList.innerHTML='';
+      const entries = Object.values(CART);
+      let total = 0;
+      entries.forEach(item=>{
+        total += item.qty * item.price;
+        const node = document.createElement('div');node.className='cart-item';
+        node.innerHTML = `
+          <img src="${item.img}" />
+          <div style="flex:1">
+            <div style="font-weight:700">${item.name}</div>
+            <div style="font-size:13px">KES ${formatKES(item.price)} x ${item.qty}</div>
+          </div>
+          <div class="qty">
+            <button class="btn" onclick='changeQty(${item.id}, -1)'>-</button>
+            <div>${item.qty}</div>
+            <button class="btn" onclick='changeQty(${item.id}, 1)'>+</button>
+          </div>
+        `;
+        cartList.appendChild(node);
+      })
+      cartCount.textContent = entries.reduce((s,i)=>s+i.qty,0);
+      cartTotal.textContent = formatKES(total);
+      document.getElementById('year').textContent = new Date().getFullYear();
+    }
+
+    function changeQty(id, delta){
+      if(!CART[id]) return;
+      CART[id].qty += delta;
+      if(CART[id].qty<=0) delete CART[id];
+      saveCart();renderCart();
+    }
+
+    function clearCart(){CART={};saveCart();renderCart();}
+
+    function checkout(){
+      if(Object.keys(CART).length===0){alert('Cart is empty');return}
+      // demo checkout
+      alert('Demo checkout — create an order in your backend or integrate Stripe/PayPal');
+      clearCart();
+      closeDrawer();
+    }
+
+    function openDrawer(){cartDrawer.classList.add('open')}
+    function closeDrawer(){cartDrawer.classList.remove('open')}
+
+    document.getElementById('openCart').addEventListener('click',()=>{
+      cartDrawer.classList.toggle('open');
+    })
+
+    document.getElementById('searchBtn').addEventListener('click',()=>{
+      const q = document.getElementById('search').value.trim().toLowerCase();
+      if(!q){renderProducts(PRODUCTS);return}
+      renderProducts(PRODUCTS.filter(p=>p.name.toLowerCase().includes(q)||p.category.includes(q)));
+    })
+
+    function filterCategory(cat){
+      if(cat==='all') renderProducts(PRODUCTS);
+      else renderProducts(PRODUCTS.filter(p=>p.category===cat));
+    }
+
+    // initial render
+    renderProducts(PRODUCTS);
+    renderCart();
+
+    // expose small helpers for buttons in markup
+    window.addToCart = addToCart; window.buyNow = buyNow; window.changeQty = changeQty; window.clearCart = clearCart; window.checkout = checkout; window.filterCategory = filterCategory; window.openDrawer = openDrawer; window.closeDrawer = closeDrawer;
+  </script>
+</body>
+</html>

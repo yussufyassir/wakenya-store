@@ -7,30 +7,67 @@
   <meta name="description" content="WaKenya Wholesale & Retails — colorful, creative online wholesale store." />
   <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
 </head>
-  <style>
-  :root{
-/* Kenyan flag colors */
---kenya-green: #006600;
---kenya-red: #bb0000;
---kenya-black: #000000;
---kenya-white: #ffffff;
-
-/* Accent colors now based on Kenyan palette */
---accent-1: var(--kenya-red);
---accent-2: var(--kenya-green);
---accent-3: #ffffff;
-
-/* Background updated to Kenyan gradient */
---bg: linear-gradient(135deg,
-    var(--kenya-black) 0%,
-    var(--kenya-red) 40%,
-    var(--kenya-green) 100%
-);
-
---glass: rgba(255,255,255,0.15);
---glass-2: rgba(255,255,255,0.10);
---card-shadow: 0 8px 30px rgba(10,10,10,0.30);
+ <style>
+:root{
+--accent-1: #ff6b6b;
+--accent-2: #ffd166;
+--accent-3: #6bf178;
+--bg: linear-gradient(135deg,#ffd166 0%, #ff6b6b 40%, #6bf178 100%);
+--glass: rgba(255,255,255,0.12);
+--glass-2: rgba(255,255,255,0.08);
+--card-shadow: 0 8px 30px rgba(10,10,10,0.12);
 font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:#111;display:flex;flex-direction:column}
+header{backdrop-filter: blur(6px);position:sticky;top:0;z-index:40;padding:14px 22px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:52px;height:52px;border-radius:12px;background:conic-gradient(from 120deg,#fff6 0,#fff2 60%), linear-gradient(45deg,#2d3142,#5e6bff);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;box-shadow:var(--card-shadow)}
+.brand h1{margin:0;font-size:18px}
+nav{display:flex;gap:12px;align-items:center}
+nav a{color:#111;text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600}
+nav a.cta{background:rgba(255,255,255,0.9)}
+
+
+main{flex:1;padding:28px;max-width:1200px;margin:0 auto;width:100%}
+.hero{display:grid;grid-template-columns:1fr 420px;gap:20px;align-items:center}
+.hero-card{background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.8));padding:28px;border-radius:16px;box-shadow:var(--card-shadow)}
+.hero h2{margin:0 0 8px;font-size:32px}
+.hero p{margin:0 0 18px;color:#333}
+.search-row{display:flex;gap:10px}
+.search-row input{flex:1;padding:12px;border-radius:10px;border:0;outline:none;font-size:16px}
+.btn{padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
+.btn-primary{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:white}
+
+
+/* product grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:22px}
+.card{background:linear-gradient(180deg,rgba(255,255,255,0.95),white);padding:14px;border-radius:14px;box-shadow:var(--card-shadow);display:flex;flex-direction:column;gap:10px}
+.thumb{height:160px;border-radius:10px;background-size:cover;background-position:center}
+.meta{display:flex;align-items:center;justify-content:space-between}
+.price{font-weight:800}
+.category{font-size:12px;padding:6px 8px;border-radius:8px;background:var(--glass-2)}
+
+
+/* cart drawer */
+.cart-btn{position:relative}
+.cart-count{position:absolute;top:-8px;right:-8px;background:#111;color:white;padding:6px 8px;border-radius:50%;font-size:12px}
+.drawer{position:fixed;right:18px;top:80px;width:360px;max-width:94%;background:white;border-radius:12px;box-shadow:0 30px 60px rgba(10,10,10,0.2);padding:16px;transform:translateX(110%);transition:transform 320ms cubic-bezier(.2,.9,.2,1);z-index:60}
+.drawer.open{transform:translateX(0%)}
+.drawer h3{margin:0 0 10px}
+.cart-list{display:flex;flex-direction:column;gap:10px;max-height:340px;overflow:auto;padding-right:6px}
+.cart-item{display:flex;gap:10px;align-items:center}
+.cart-item img{width:56px;height:56px;border-radius:8px;object-fit:cover}
+.qty{display:flex;gap:6px;align-items:center}
+
+
+footer{padding:20px;text-align:center;color:#222;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.02));margin-top:30px}
+
+
+/* responsive */
+@media (max-width:900px){
+.hero{grid-template-columns:1fr}
+header{padding:12px}
 }
 </style>
 <body>

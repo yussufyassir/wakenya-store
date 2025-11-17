@@ -7,64 +7,101 @@
   <meta name="description" content="WaKenya Wholesale & Retails — colorful, creative online wholesale store." />
   <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
 </head>
-  <style>
+ <style>
 
-/* ======== GENERAL ======== */
+/* =================== GLOBAL =================== */
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  background: #f5f7fa; /* Corporate clean background */
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f2f4f7;
   color: #222;
 }
 
-/* ======== HEADER ======== */
+/* =================== HEADER =================== */
 header {
-  background: #0B3B0B; /* Kenyan dark green */
-  color: white;
-  padding: 15px 30px;
+  background: white;
+  border-bottom: 4px solid #128a12; /* Kenyan Green */
+  padding: 20px 40px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  border-bottom: 5px solid #c8102e; /* Kenyan red strip */
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 header .logo {
-  font-size: 1.7rem;
-  font-weight: bold;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #128a12;
 }
 
-header nav a {
-  color: white;
-  margin-left: 20px;
+nav a {
   text-decoration: none;
+  margin-left: 25px;
+  font-weight: 600;
+  color: #333;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #d40000; /* Kenyan Red */
+}
+
+/* =================== HERO BANNER =================== */
+.hero {
+  background: linear-gradient(to right, #128a12, #0b5d0b);
+  color: white;
+  padding: 70px 40px;
+  text-align: center;
+  border-bottom: 4px solid #d40000;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.hero button {
+  margin-top: 20px;
+  padding: 15px 30px;
+  border: none;
+  background: white;
+  color: #128a12;
   font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-header nav a:hover {
-  color: #00cc44; /* light Kenyan green */
+.hero button:hover {
+  background: #ffefef;
+  color: #d40000;
 }
 
-/* ======== PRODUCT GRID ======== */
+/* =================== PRODUCT GRID =================== */
 .product-grid {
+  padding: 40px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-  padding: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
 }
 
-/* ======== PRODUCT CARD ======== */
+/* =================== PRODUCT CARD =================== */
 .product-card {
   background: white;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 18px;
   overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
   transition: 0.3s;
-  border-top: 4px solid #0B3B0B; /* subtle Kenyan green */
 }
 
 .product-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
 }
 
 .product-card img {
@@ -74,49 +111,55 @@ header nav a:hover {
 }
 
 .product-card h3 {
-  padding: 10px;
-  font-size: 1.2rem;
-  color: #0B3B0B;
+  padding: 15px 15px 5px;
+  font-size: 1.25rem;
+  color: #128a12;
 }
 
 .product-card .price {
-  padding: 0 10px;
+  padding: 0 15px;
+  font-size: 1.2rem;
+  color: #d40000;
   font-weight: bold;
-  font-size: 1.1rem;
-  color: #c8102e; /* Kenyan red */
 }
 
 .product-card p {
-  padding: 0 10px 10px;
-  color: #444;
+  padding: 0 15px 15px;
+  color: #555;
+  font-size: 0.95rem;
 }
 
 .product-card button {
+  margin: 10px auto 20px;
+  display: block;
   width: 90%;
-  margin: 10px auto;
-  padding: 10px;
-  background: #0B3B0B;
-  color: white;
+  padding: 12px;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
+  background: #128a12;
+  color: white;
   font-weight: bold;
-  transition: 0.2s;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .product-card button:hover {
-  background: #145214;
+  background: #0b5d0b;
 }
 
-/* ======== FOOTER ======== */
+/* =================== FOOTER =================== */
 footer {
-  background: #0B3B0B;
+  background: #111;
   color: white;
   text-align: center;
-  padding: 20px;
-  border-top: 5px solid #c8102e;
+  padding: 25px;
+  margin-top: 50px;
+  border-top: 4px solid #d40000;
+  font-size: 0.9rem;
 }
+
 </style>
+
 <body>
   <header>
     <div class="brand">

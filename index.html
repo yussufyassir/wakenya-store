@@ -94,9 +94,6 @@ header{padding:12px}
   </header>
 <section class="hero">
   <h1>Welcome to Wakuweza Store Kenya</h1>
- 
-</section>
-<button onclick="payMpesa()">Pay With M-Pesa</button>
   <main>
     <section class="hero">
       <div class="hero-card">
@@ -165,10 +162,7 @@ header{padding:12px}
       <div><strong>Total:</strong> KES <span id="cartTotal">0</span></div>
       <div>
         <button class="btn" onclick="clearCart()">Clear</button>
-        <button class="btn btn-primary" onclick="checkout()">Checkout</button>
-        <button onclick="payMpesa()">Pay With M-Pesa</button>
-
-<script>
+        <button class="btn btn-primary" onclick="checkout()">Checkout</button><script>
 async function payMpesa() {
     const phone = prompt("Enter phone number (2547…):");
     const amount = 2000; // You can make this dynamic

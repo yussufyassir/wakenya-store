@@ -161,24 +161,9 @@ header{padding:12px}
   const [tillData, setTillData] = useState({
     tillNumber: "8606760",
     instructions: "Please pay using M-Pesa with the till number above. Use your Order ID as the reference.",
-  });
-
-  return (
     <div style={{ maxWidth: 600, margin: "2rem auto", fontFamily: "Arial, sans-serif" }}>
       <h1>Till Payment</h1>
       <TillPaymentButton tillNumber={tillData.tillNumber} instructions={tillData.instructions} />
-    <div>
-      <button onClick={toggleInstructions} style={{ padding: "0.5rem 1rem", cursor: "pointer" }}>
-        {showInstructions ? "Hide Payment Instructions" : "Show Payment Instructions"}
-      </button>
-
-      {showInstructions && (
-        <div style={{ marginTop: "1rem", border: "1px solid #ccc", padding: "1rem", borderRadius: "4px" }}>
-          <p><strong>Till Number:</strong> {tillNumber}</p>
-          <p>{instructions}</p>
-          <p>
-            To pay: Open M-Pesa &gt; Lipa na M-Pesa &gt; Paybill or Buy Goods &gt; Enter Till Number &gt; Enter your Order ID as the account/reference &gt; Enter amount &gt; Confirm
-          </p>
         </script>
         </div>
       )}

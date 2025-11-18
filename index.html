@@ -162,23 +162,7 @@ header{padding:12px}
       <div><strong>Total:</strong> KES <span id="cartTotal">0</span></div>
       <div>
         <button class="btn" onclick="clearCart()">Clear</button>
-        <button class="btn btn-primary" onclick="checkout()">Checkout</button><script>
-async function payMpesa() {
-    const phone = prompt("Enter phone number (2547…):");
-    const amount = 2000; // You can make this dynamic
-
-    const res = await fetch("https://your-backend-url/stkpush", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone, amount })
-    });
-
-    const data = await res.json();
-    console.log(data);
-    alert("Check your phone to complete payment");
-}
-</script>
-
+        <button class="btn btn-primary" onclick="checkout()">Checkout</button>
       </div>
     </div>
   </aside>

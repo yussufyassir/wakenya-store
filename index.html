@@ -155,9 +155,7 @@ header{padding:12px}
       <div><strong>Total:</strong> KES <span id="cartTotal">0</span></div>
       <div>
         <button class="btn" onclick="clearCart()">Clear</button>
-        <button class="btn btn-primary"onclick="payMpesa()"">Checkout</button>
-       <script>
-<!-- Button to toggle the display of the payment form -->
+     <!-- Button to toggle the display of the payment form -->
 <button id="payNowButton">Pay Now</button>
 
 <!-- Hidden container for the payment form -->
@@ -195,15 +193,16 @@ header{padding:12px}
     const name = document.getElementById('name').value;
     const tillNumber = document.getElementById('tillNumber').value;
 
-    // You can send this data to your server or payment API here
+    // You can replace this alert with your payment processing code
     alert(`Payment of KES ${amount} by ${name} to Till ${tillNumber} has been initiated.`);
 
-    // Optionally, reset the form
+    // Reset the form
     this.reset();
     // Hide the form after submission
     document.getElementById('paymentFormContainer').style.display = 'none';
   });
 </script>
+
         </div>
       )}
     </div>

@@ -17,8 +17,6 @@
     #ffffff 50%,
     #d40000 100%
 );
-
-
 --glass: rgba(255,255,255,0.12);
 --glass-2: rgba(255,255,255,0.08);
 --card-shadow: 0 8px 30px rgba(10,10,10,0.12);
@@ -34,7 +32,6 @@ nav{display:flex;gap:12px;align-items:center}
 nav a{color:#111;text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600}
 nav a.cta{background:rgba(255,255,255,0.9)}
 
-
 main{flex:1;padding:28px;max-width:1200px;margin:0 auto;width:100%}
 .hero{display:grid;grid-template-columns:1fr 420px;gap:20px;align-items:center}
 .hero-card{background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.8));padding:28px;border-radius:16px;box-shadow:var(--card-shadow)}
@@ -45,7 +42,6 @@ main{flex:1;padding:28px;max-width:1200px;margin:0 auto;width:100%}
 .btn{padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
 .btn-primary{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:white}
 
-
 /* product grid */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:22px}
 .card{background:linear-gradient(180deg,rgba(255,255,255,0.95),white);padding:14px;border-radius:14px;box-shadow:var(--card-shadow);display:flex;flex-direction:column;gap:10px}
@@ -53,7 +49,6 @@ main{flex:1;padding:28px;max-width:1200px;margin:0 auto;width:100%}
 .meta{display:flex;align-items:center;justify-content:space-between}
 .price{font-weight:800}
 .category{font-size:12px;padding:6px 8px;border-radius:8px;background:var(--glass-2)}
-
 
 /* cart drawer */
 .cart-btn{position:relative}
@@ -66,9 +61,7 @@ main{flex:1;padding:28px;max-width:1200px;margin:0 auto;width:100%}
 .cart-item img{width:56px;height:56px;border-radius:8px;object-fit:cover}
 .qty{display:flex;gap:6px;align-items:center}
 
-
 footer{padding:20px;text-align:center;color:#222;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.02));margin-top:30px}
-
 
 /* responsive */
 @media (max-width:900px){
@@ -162,7 +155,24 @@ header{padding:12px}
       <div><strong>Total:</strong> KES <span id="cartTotal">0</span></div>
       <div>
         <button class="btn" onclick="clearCart()">Clear</button>
-        <button class="btn btn-primary" onclick="checkout()">Checkout</button>
+        <button class="btn btn-primary"onclick="payMpesa()">Checkout</button>
+        <script>
+async function payMpesa() {
+    const phone = prompt("Enter phone number (2547…):");
+    const amount = 2000; // You can make this dynamic
+
+    const res = await fetch("https://your-backend-url/stkpush", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone, amount })
+    });
+
+    const data = await res.json();
+    console.log(data);
+    alert("Check your phone to complete payment");
+}
+</script>
+        
       </div>
     </div>
   </aside>

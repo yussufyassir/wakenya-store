@@ -96,7 +96,7 @@ header{padding:12px}
   <h1>Welcome to Wakuweza Store Kenya</h1>
  
 </section>
-
+<button onclick="payMpesa()">Pay With M-Pesa</button>
   <main>
     <section class="hero">
       <div class="hero-card">
@@ -166,6 +166,25 @@ header{padding:12px}
       <div>
         <button class="btn" onclick="clearCart()">Clear</button>
         <button class="btn btn-primary" onclick="checkout()">Checkout</button>
+        <button onclick="payMpesa()">Pay With M-Pesa</button>
+
+<script>
+async function payMpesa() {
+    const phone = prompt("Enter phone number (2547…):");
+    const amount = 2000; // You can make this dynamic
+
+    const res = await fetch("https://your-backend-url/stkpush", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone, amount })
+    });
+
+    const data = await res.json();
+    console.log(data);
+    alert("Check your phone to complete payment");
+}
+</script>
+
       </div>
     </div>
   </aside>

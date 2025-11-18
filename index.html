@@ -155,16 +155,55 @@ header{padding:12px}
       <div><strong>Total:</strong> KES <span id="cartTotal">0</span></div>
       <div>
         <button class="btn" onclick="clearCart()">Clear</button>
-        <button class="btn btn-primary"onClick={toggleInstructions} style={{ padding: "0.5rem 1rem" }}>()">Checkout</button>
-        <script>
-       function App() {
-  const [tillData, setTillData] = useState({
-    tillNumber: "8606760",
-    instructions: "Please pay using M-Pesa with the till number above. Use your Order ID as the reference.",
-    <div style={{ maxWidth: 600, margin: "2rem auto", fontFamily: "Arial, sans-serif" }}>
-      <h1>Till Payment</h1>
-      <TillPaymentButton tillNumber={tillData.tillNumber} instructions={tillData.instructions} />
-        </script>
+        <button class="btn btn-primary"onclick="payMpesa()"">Checkout</button>
+       <script>
+<!-- Button to toggle the display of the payment form -->
+<button id="payNowButton">Pay Now</button>
+
+<!-- Hidden container for the payment form -->
+<div id="paymentFormContainer" style="display: none; margin-top: 20px;">
+  <h2>Payment Options</h2>
+  <form id="paymentForm">
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="amount" required><br><br>
+    
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    
+    <label for="tillNumber">Till Number:</label>
+    <input type="text" id="tillNumber" name="tillNumber" value="8606760" readonly><br><br>
+    
+    <button type="submit">Pay</button>
+  </form>
+</div>
+
+<script>
+  // Toggle the display of the payment form
+  document.getElementById('payNowButton').addEventListener('click', () => {
+    const container = document.getElementById('paymentFormContainer');
+    if (container.style.display === 'none') {
+      container.style.display = 'block';
+    } else {
+      container.style.display = 'none';
+    }
+  });
+
+  // Handle form submission
+  document.getElementById('paymentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const amount = document.getElementById('amount').value;
+    const name = document.getElementById('name').value;
+    const tillNumber = document.getElementById('tillNumber').value;
+
+    // You can send this data to your server or payment API here
+    alert(`Payment of KES ${amount} by ${name} to Till ${tillNumber} has been initiated.`);
+
+    // Optionally, reset the form
+    this.reset();
+    // Hide the form after submission
+    document.getElementById('paymentFormContainer').style.display = 'none';
+  });
+</script>
         </div>
       )}
     </div>

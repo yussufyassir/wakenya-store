@@ -195,7 +195,12 @@ function openCartAndPayment() {
     <input id="mpesaCode" type="text" 
         placeholder="e.g. QJT3N9X8T5"
         style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; margin:8px 0;">
-    
+   
+  <label style="font-weight:600;"> Enter Full name </label>
+  <input id="fullname"  type="text"
+      placeholder=ë.g. wakuweza
+       style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; margin:8px 0;">
+  
     <button onclick="submitMpesaCode()" 
         style="background:#009e3a; color:white; padding:12px; width:100%; border:0; border-radius:10px; font-weight:700;">
         Submit Payment
@@ -203,13 +208,14 @@ function openCartAndPayment() {
   <script>
 function submitMpesaCode() {
     const code = document.getElementById("mpesaCode").value.trim();
+    const name = document.getElementById("fullname").value.trim();
     if (!code) {
         alert("Please enter a valid M-Pesa code.");
         return;
     }
 
     const phone = "254795718266";  
-    const text = `New Payment Received%0AM-Pesa Code: ${code}`;
+    const text = `I have made my payment%0AM-Pesa Code: ${code}`;
 
     window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
 }

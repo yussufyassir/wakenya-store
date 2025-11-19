@@ -155,7 +155,12 @@ header{padding:12px}
       <div>
         <button class="btn" onclick="clearCart()">Clear</button>
      <!-- Button to toggle the display of the payment form -->
-<button id="payNowButton">Pay Now</button>
+<button class="btn"
+        style="background:#009e3a; color:white; padding:10px 16px; border-radius:10px; margin-top:10px;"
+        onclick="document.getElementById('mpesaSection').scrollIntoView({behavior:'smooth'})">
+    Make Payment
+</button>
+
 <section style="background:#f5fff5; padding:20px; border-radius:10px; border:1px solid #c5e8c5">
     <h2 style="color:#1a7f37;">M-Pesa Payment (Manual)</h2>
     <p>Use the details below to complete your payment:</p>

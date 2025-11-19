@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Payment - Wakuweza Store Kenya</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f4f4f4;
+  padding:20px;
+}
+.container{
+  max-width:480px;
+  margin:0 auto;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.1);
+}
+h2{ text-align:center; }
+
+input, select{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+button{
+  width:100%;
+  padding:12px;
+  background:#008000;
+  color:white;
+  border:0;
+  border-radius:8px;
+  font-size:18px;
+  cursor:pointer;
+}
+button:hover{
+  background:#006400;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Confirm M-Pesa Payment</h2>
+
+  <p><b>PAY TO TILL NUMBER:</b> <span style="color:green; font-size:20px;">8606760</span></p>
+
+  <label>Full Name</label>
+  <input type="text" id="name" placeholder="Enter your full name" required>
+
+  <label>Phone Number</label>
+  <input type="text" id="phone" placeholder="07XXXXXXXX" required>
+
+  <label>Amount Paid</label>
+  <input type="number" id="amount" placeholder="Amount (e.g. 2000)" required>
+
+  <label>M-Pesa Transaction Code</label>
+  <input type="text" id="code" placeholder="e.g. QED45H22F" required>
+
+  <button onclick="sendToWhatsApp()">Submit Payment</button>
+</div>
+
+<script>
+function sendToWhatsApp(){
+    let name = document.getElementById('name').value;
+    let phone = document.getElementById('phone').value;
+    let amount = document.getElementById('amount').value;
+    let code = document.getElementById('code').value;
+
+    if(!name || !phone || !amount || !code){
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    let message = 
+`PAYMENT CONFIRMATION:
+
+Name: ${name}
+Phone: ${phone}
+Amount Paid: ${amount}
+M-Pesa Code: ${code}
+
+For Wakuweza Store Kenya`;
+
+    let url = "https://wa.me/254795718266?text=" + encodeURIComponent(message);
+
+    window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>

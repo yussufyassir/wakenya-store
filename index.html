@@ -202,23 +202,14 @@ function openCartAndPayment() {
         style="background:#009e3a; color:white; padding:12px; width:100%; border:0; border-radius:10px; font-weight:700;">
         Submit Payment
     </button>
-<script>
+  <script>
 function submitMpesaCode() {
-     const mpesaCode = paymentForm.querySelector("input[type='text']").value.trim();
-
-        if (!mpesaCode) {
-            alert("Please enter your M-Pesa confirmation code.");
-            return;
-        }  
-  document.addEventListener("DOMContentLoaded", () => {
-    const paymentForm = document.querySelector("form");
-    
-    paymentForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-
-     
-
-        // Build WhatsApp message from CART
+    const code = document.getElementById("mpesaCode").value.trim();
+    if (!code) {
+        alert("Please enter a valid M-Pesa code.");
+        return;
+    }
+// Build WhatsApp message from CART
         let items = Object.values(CART);
         if (items.length === 0) {
             alert("Cart is empty!");
@@ -240,13 +231,14 @@ function submitMpesaCode() {
         message += `----------------------------------\n`;
         message += `Customer has completed payment.`;
 
-        const phone = "254795718266"; // your WhatsApp
-        const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 
-        window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
-    });
-});
+    const phone = "254795718266";  
+    const text = `New Payment Received%0AM-Pesa Code: ${code}`;
+
+    window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
+}
 </script>
+
 </script>
 
 

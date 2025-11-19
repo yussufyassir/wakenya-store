@@ -94,6 +94,7 @@ header{padding:12px}
         <div class="search-row">
           <input id="search" placeholder="Search products, e.g. 'sneakers' or 'charging cable'" />
           <button class="btn btn-primary" id="searchBtn">Search</button>
+
         </div>
 
         <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
@@ -102,6 +103,8 @@ header{padding:12px}
           <button class="btn" onclick="filterCategory('fashion')">Fashion</button>
           <button class="btn" onclick="filterCategory('home')">Home</button>
           <button class="btn" onclick="filterCategory('groceries')">Groceries</button>
+          <a class="btn" href="product.html?id=${p.id}">View</a>
+
         </div>
       </div>
 

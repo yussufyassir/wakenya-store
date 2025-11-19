@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body { font-family: Arial; padding:20px; background:white; }
+        .container { max-width:700px; margin:auto; }
+        img { width:100%; border-radius:10px; }
+        .price { font-size:22px; font-weight:bold; color:#0b8d33; }
+        .btn {
+            padding:12px 18px;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+            font-size:16px;
+            margin-right:8px;
+        }
+        .primary { background:#0b8d33; color:white; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 id="name"></h2>
+    <img id="image">
+    <p class="price" id="price"></p>
+    <p id="category"></p>
+
+    <button class="btn primary" id="addBtn">Add to Cart</button>
+    <button class="btn" id="buyBtn">Buy Now</button>
+</div>
+
+<script>
+    const PRODUCTS = JSON.parse(localStorage.getItem("productsBackup"));
+
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get("id"));
+
+    const product = PRODUCTS.find(p => p.id === id);
+
+    if (!product) {
+        document.body.innerHTML = "<h1>Product not found</h1>";
+    } else {
+        document.getElementById("name").textContent = product.name;
+        document.getElementById("image").src = product.img;
+        document.getElementById("price").textContent = "KES " + product.price.toLocaleString("en-KE");
+        document.getElementById("category").textContent = "Category: " + product.category;
+
+        document.getElementById("addBtn").onclick = () => {
+            let CART = JSON.parse(localStorage.getItem('wakenya_cart') || "{}");
+            CART[id] = CART[id] || {...product, qty:0};
+            CART[id].qty++;
+            localStorage.setItem('wakenya_cart', JSON.stringify(CART));
+            alert("Added to cart!");
+        };
+
+        document.getElementById("buyBtn").onclick = () => {
+            let CART = JSON.parse(localStorage.getItem('wakenya_cart') || "{}");
+            CART[id] = CART[id] || {...product, qty:0};
+            CART[id].qty++;
+            localStorage.setItem('wakenya_cart', JSON.stringify(CART));
+            window.location.href = "index.html#cart";
+        };
+    }
+</script>
+
+</body>
+</html>

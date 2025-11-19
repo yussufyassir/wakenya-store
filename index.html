@@ -247,12 +247,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const phone = "254795718266"; // your WhatsApp
         const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 
-        window.open(url, "_blank");  // open WhatsApp
+        window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
     });
 });
 </script>
-
-}
 </script>
 
 

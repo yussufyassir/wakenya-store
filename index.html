@@ -170,41 +170,7 @@ header{padding:12px}
     <label for="tillNumber">Till Number:</label>
     <input type="text" id="tillNumber" name="tillNumber" value="8606760" readonly><br><br>
     
-    <button type="submit">Pay</button>
-  </form>
-</div>
-
-<script>
-  // Toggle the display of the payment form
-  document.getElementById('payNowButton').addEventListener('click', () => {
-    const container = document.getElementById('paymentFormContainer');
-    if (container.style.display === 'none') {
-      container.style.display = 'block';
-    } else {
-      container.style.display = 'none';
-    }
-)}
-  // Handle form submission
-  document.getElementById('paymentForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const amount = document.getElementById('amount').value;
-    const name = document.getElementById('name').value;
-    const tillNumber = document.getElementById('tillNumber').value;
-
-    // You can replace this alert with your payment processing code
-    alert(`Payment of KES ${amount} by ${name} to Till ${tillNumber} has been initiated.`);
-);}
-    // Reset the form
-    this.reset();
-    // Hide the form after submission
-    document.getElementById('paymentFormContainer').style.display = 'none';
-</script>
-
-        </div>
-      )}
-    </div>
-  );
-}
+   
       </div>
     </div>
   </aside>

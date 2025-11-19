@@ -157,25 +157,50 @@ header{padding:12px}
      <!-- Button to toggle the display of the payment form -->
 <button class="btn"
         style="background:#009e3a; color:white; padding:10px 16px; border-radius:10px; margin-top:10px;"
-        onclick="document.getElementById('mpesaSection').scrollIntoView({behavior:'smooth'})">
-    Make Payment
+        onclick="openCartAndPayment()">
+    💚 Pay with M-Pesa
 </button>
 <script>
-function openMpesaSection() {
+function openCartAndPayment() {
     const drawer = document.querySelector('.drawer');
     const mpesaSection = document.getElementById('mpesaSection');
 
-    if (drawer && mpesaSection) {
+    // 1️⃣ Open drawer
+    drawer.classList.add('open');
+
+    // 2️⃣ Wait for animation then scroll
+    setTimeout(() => {
         drawer.scrollTo({
             top: mpesaSection.offsetTop - 20,
             behavior: "smooth"
         });
-    }
+    }, 200);
 }
 </script>
+<section id="mpesaSection" style="
+    background:#e8f9ee;
+    padding:18px;
+    margin-top:20px;
+    border-radius:12px;
+    border:1px solid #c7e9d0;
+">
+    <h3 style="margin:0 0 10px; color:#009e3a;">M-Pesa Payment</h3>
 
-<section id="mpesaSection" style="background:#f5fff5; padding:20px; border-radius:10px; border:1px solid #c5e8c5">
+    <p style="margin:0 0 10px;">
+        Send your payment to:<br>
+        <strong>Till Number: 8606760</strong>
+    </p>
 
+    <label style="font-weight:600;">Enter M-Pesa Code</label>
+    <input id="mpesaCode" type="text" 
+        placeholder="e.g. QJT3N9X8T5"
+        style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; margin:8px 0;">
+    
+    <button onclick="submitMpesaCode()" 
+        style="background:#009e3a; color:white; padding:12px; width:100%; border:0; border-radius:10px; font-weight:700;">
+        Submit Payment
+    </button>
+</section>
 
       </div>
     </div>

@@ -213,8 +213,8 @@ function submitMpesaCode() {
     const phone = "254795718266";
 
     // 1️⃣ Collect cart items
-    let items = "cartlist";
-    let total = "cartTotal";
+    let items =[] ;
+    let total =0 ;
 
     document.querySelectorAll(".cart-item").forEach(item => {
         const name = item.querySelector(".item-name")?.innerText || "Unknown item";

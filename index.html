@@ -156,20 +156,37 @@ header{padding:12px}
         <button class="btn" onclick="clearCart()">Clear</button>
      <!-- Button to toggle the display of the payment form -->
 <button id="payNowButton">Pay Now</button>
+<section style="background:#f5fff5; padding:20px; border-radius:10px; border:1px solid #c5e8c5">
+    <h2 style="color:#1a7f37;">M-Pesa Payment (Manual)</h2>
+    <p>Use the details below to complete your payment:</p>
 
-<!-- Hidden container for the payment form -->
-<div id="paymentFormContainer" style="display: none; margin-top: 20px;">
-  <h2>Payment Options</h2>
-  <form id="paymentForm">
-    <label for="amount">Amount:</label>
-    <input type="number" id="amount" name="amount" required><br><br>
-    
-    <label for="name">Your Name:</label>
-    <input type="text" id="name" name="name" required><br><br>
-    
-    <label for="tillNumber">Till Number:</label>
-    <input type="text" id="tillNumber" name="tillNumber" value="8606760" readonly><br><br>
-    
+    <h3 style="color:#1a7f37;">✔ Lipa Na M-Pesa (Buy Goods & Services)</h3>
+    <p><strong>Till Number:</strong> <span style="color:#0b8d33; font-size:20px;">8606760</span></p>
+
+    <h3>📌 How to Pay:</h3>
+    <ol>
+        <li>Go to <strong>M-Pesa</strong></li>
+        <li>Select <strong>Lipa Na M-Pesa</strong></li>
+        <li>Select <strong>Buy Goods & Services</strong></li>
+        <li>Enter Till Number: <strong>8606760</strong></li>
+        <li>Enter Amount</li>
+        <li>Enter M-Pesa PIN</li>
+        <li>Click <strong>Pay</strong></li>
+    </ol>
+
+    <h3>📨 After Payment:</h3>
+    <p>Enter your M-Pesa confirmation code below:</p>
+
+    <form style="margin-top:15px;">
+        <input type="text" placeholder="M-Pesa Code (e.g., QJP3RT8L5X)" 
+               style="width:100%; padding:12px; border:1px solid #ccc; border-radius:5px; margin-bottom:10px;">
+        <button type="submit" 
+                style="background:#0b8d33; color:white; padding:12px; width:100%; border:none; border-radius:5px; font-size:16px;">
+            Submit Payment
+        </button>
+    </form>
+</section>
+
    
       </div>
     </div>

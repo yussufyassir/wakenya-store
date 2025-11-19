@@ -236,6 +236,54 @@ function submitMpesaCode() {
 
     // 3️⃣ Send to WhatsApp
     window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+  <script>
+// ----------------------
+// WHATSAPP ORDER SYSTEM
+// ----------------------
+
+document.addEventListener("DOMContentLoaded", () => {
+    const paymentForm = document.querySelector("form");
+    
+    paymentForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const mpesaCode = paymentForm.querySelector("input[type='text']").value.trim();
+
+        if (!mpesaCode) {
+            alert("Please enter your M-Pesa confirmation code.");
+            return;
+        }
+
+        // Build WhatsApp message from CART
+        let items = Object.values(CART);
+        if (items.length === 0) {
+            alert("Cart is empty!");
+            return;
+        }
+
+        let message = "🛒 *New Order Received*\n\n";
+        let total = 0;
+
+        items.forEach(item => {
+            let line = `• ${item.name}\n   Qty: ${item.qty}\n   Price: KES ${item.price}\n\n`;
+            message += line;
+            total += item.qty * item.price;
+        });
+
+        message += `----------------------------------\n`;
+        message += `TOTAL: *KES ${total.toLocaleString("en-KE")}*\n`;
+        message += `M-Pesa Code: *${mpesaCode}*\n`;
+        message += `----------------------------------\n`;
+        message += `Customer has completed payment.`;
+
+        const phone = "254795718266"; // your WhatsApp
+        const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+        window.open(url, "_blank");  // open WhatsApp
+    });
+});
+</script>
+
 }
 </script>
 

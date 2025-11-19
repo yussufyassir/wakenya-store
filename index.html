@@ -204,23 +204,19 @@ function openCartAndPayment() {
     </button>
 <script>
 function submitMpesaCode() {
-    
-// ----------------------
-// WHATSAPP ORDER SYSTEM
-// ----------------------
+     const mpesaCode = paymentForm.querySelector("input[type='text']").value.trim();
 
-document.addEventListener("DOMContentLoaded", () => {
+        if (!mpesaCode) {
+            alert("Please enter your M-Pesa confirmation code.");
+            return;
+        }  
+  document.addEventListener("DOMContentLoaded", () => {
     const paymentForm = document.querySelector("form");
     
     paymentForm.addEventListener("submit", function(event) {
         event.preventDefault();
 
-        const mpesaCode = paymentForm.querySelector("input[type='text']").value.trim();
-
-        if (!mpesaCode) {
-            alert("Please enter your M-Pesa confirmation code.");
-            return;
-        }
+     
 
         // Build WhatsApp message from CART
         let items = Object.values(CART);

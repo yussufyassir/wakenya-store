@@ -107,7 +107,7 @@ header{padding:12px}
 
       <div style="display:flex;flex-direction:column;gap:12px">
         <div style="background:white;padding:18px;border-radius:12px;box-shadow:var(--card-shadow)">
-          <h3 style="margin:0">Why buy wholesale?</h3>
+          <h3 style="margin:0">Why buy from us</h3>
           <ul style="margin:10px 0 0 18px">
             <li>Lower per-unit cost</li>
             <li>Reliable supply for retailers</li>
@@ -126,16 +126,19 @@ header{padding:12px}
 
     <section id="about" style="margin-top:30px">
       <h2>About Wakuweza</h2>
-      <p>WaKuweza Wholesale & Retails kenya connects suppliers to small businesses across Kenya and beyond. Our mission is to make bulk buying easy and reliable.</p>
+      <p>WaKuweza Wholesale & Retails kenya connects suppliers to small businesses across Kenya. Our mission is to make bulk buying easy and reliable.</p>
     </section>
 
     <section id="contact" style="margin-top:24px">
       <h2>Contact:+254799145791</h2>
       <p>Email: wakuwezawholesale@gmail.com</p>
-      <form onsubmit="event.preventDefault();alert('Message sent (demo)')">
+      <form onsubmit="event.preventDefault();alert('Message sent ')">
         <input required placeholder="Your name" style="padding:10px;border-radius:8px;border:0;margin-right:6px;width:220px" />
         <input required placeholder="Your email" style="padding:10px;border-radius:8px;border:0;width:220px" />
-        <div style="margin-top:8px"><button class="btn btn-primary">Send</button></div>
+        <div style="margin-top:8px">
+          <button class="btn btn-primary">Send</button>
+       
+        </div>
       </form>
     </section>
 
@@ -210,8 +213,8 @@ function submitMpesaCode() {
     const phone = "254795718266";
 
     // 1️⃣ Collect cart items
-    let items = [];
-    let total = 0;
+    let items = "cartlist";
+    let total = "cartTotal";
 
     document.querySelectorAll(".cart-item").forEach(item => {
         const name = item.querySelector(".item-name")?.innerText || "Unknown item";
@@ -226,7 +229,7 @@ function submitMpesaCode() {
     let cartText = items.length > 0 ? items.join("%0A") : "No items found";
 
     const message =
-        `New Payment Received%0A` +
+        `I have made payment%0A` +
         `M-Pesa Code: ${code}%0A%0A` +
         `Items Ordered:%0A${cartText}%0A%0A` +
         `Total: KSh ${total}`;
